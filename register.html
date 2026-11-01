@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Sairam Enterprises</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    background: #0b1117;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 450px;
+    padding: 38px;
+    background: #111c26;
+    border: 1px solid rgba(214,168,79,.3);
+    border-radius: 15px;
+    box-shadow: 0 15px 45px rgba(0,0,0,.3);
+}
+
+.auth-box h1 {
+    color: #d6a84f;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    color: #aab2bb;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-box label {
+    display: block;
+    color: #f4f5f6;
+    margin: 14px 0 8px;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #45515c;
+    border-radius: 7px;
+    background: #0b1117;
+    color: white;
+    outline: none;
+}
+
+.auth-box input:focus {
+    border-color: #d6a84f;
+}
+
+.auth-submit {
+    width: 100%;
+    margin-top: 24px;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #d6a84f;
+    color: #101820;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.auth-submit:hover {
+    background: #e4bc6a;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 20px;
+    color: #aab2bb;
+}
+
+.auth-links a {
+    color: #d6a84f;
+    text-decoration: none;
+}
+
+.auth-message {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-page">
+    <div class="auth-box">
+
+        <h1>Create Account</h1>
+        <p class="auth-subtitle">
+            Register with Sairam Enterprises
+        </p>
+
+        <form id="registerForm">
+
+            <label>Full Name</label>
+            <input type="text" id="name"
+                placeholder="Enter your full name" required>
+
+            <label>Phone Number</label>
+            <input type="tel" id="phone"
+                placeholder="Enter your phone number"
+                pattern="[0-9]{10}" maxlength="10" required>
+
+            <label>Email Address</label>
+            <input type="email" id="email"
+                placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" id="password"
+                placeholder="Create a password"
+                minlength="8" required>
+
+            <button type="submit" class="auth-submit">
+                Register
+            </button>
+
+            <p class="auth-message" id="message"></p>
+
+        </form>
+
+        <div class="auth-links">
+            Already have an account?
+            <a href="login.html">Login Here</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const message = document.getElementById("message");
+
+    const userData = {
+        name: document.getElementById("name").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value
+    };
+
+    message.style.color = "#d6a84f";
+    message.textContent = "Creating your account...";
+
+    try {
+        const response = await fetch("/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            message.style.color = "#ff8585";
+            message.textContent = data.message || "Registration failed.";
+            return;
+        }
+
+        message.style.color = "#75d69b";
+        message.textContent = "Registration successful! Redirecting to login...";
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1500);
+
+    } catch (error) {
+        message.style.color = "#ff8585";
+        message.textContent = "Unable to connect to server.";
+    }
+});
+</script>
+
+</body>
+</html>

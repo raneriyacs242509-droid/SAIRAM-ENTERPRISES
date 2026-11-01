@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Sairam Enterprises</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0b1117, #202d38);
+            color: white;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            background: #151e27;
+            border: 1px solid rgba(217,170,69,0.35);
+            border-radius: 20px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 23px;
+            font-weight: bold;
+            color: #d9aa45;
+            margin-bottom: 12px;
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aab4bf;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border-radius: 9px;
+            border: 1px solid #354452;
+            background: #0d151d;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d9aa45;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #d9aa45;
+            color: #111820;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #efc46c;
+        }
+
+        #loginMessage {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #d9aa45;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">SAIRAM ENTERPRISES</div>
+
+        <div class="icon">🔐</div>
+
+        <h1>Administrator Login</h1>
+
+        <p class="subtitle">
+            Secure access to your business dashboard
+        </p>
+
+        <form id="adminLoginForm">
+
+            <label for="email">Admin Email</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter admin email"
+                required
+            >
+
+            <label for="password">Admin Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter admin password"
+                required
+            >
+
+            <button type="submit" id="loginButton">
+                Login to Dashboard →
+            </button>
+
+        </form>
+
+        <p id="loginMessage"></p>
+
+        <a href="index.html" class="back-link">
+            ← Back to Website
+        </a>
+
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("adminLoginForm");
+        const loginMessage = document.getElementById("loginMessage");
+        const loginButton = document.getElementById("loginButton");
+
+        loginForm.addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            loginButton.disabled = true;
+            loginButton.textContent = "Logging in...";
+            loginMessage.textContent = "";
+
+            try {
+                const response = await fetch("/admin/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || "Login failed.");
+                }
+
+                sessionStorage.setItem("adminToken", data.token);
+
+                loginMessage.style.color = "#8ee0a3";
+                loginMessage.textContent = "Login successful! Opening dashboard...";
+
+                window.location.href = "admin.html";
+
+            } catch (error) {
+                loginMessage.style.color = "#ff8d8d";
+                loginMessage.textContent = error.message;
+            } finally {
+                loginButton.disabled = false;
+                loginButton.textContent = "Login to Dashboard →";
+            }
+        });
+    </script>
+
+</body>
+</html>

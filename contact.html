@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Sairam Enterprises</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 27px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            background: linear-gradient(135deg, #191f25, #11171d);
+            transition: 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+            border-color: #d9aa45;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #d9aa45;
+            color: #111820;
+            font-size: 23px;
+        }
+
+        .contact-item small {
+            display: block;
+            color: #9ba8b6;
+            letter-spacing: 2px;
+            font-size: 11px;
+            margin-bottom: 9px;
+        }
+
+        .contact-item h3 {
+            color: #fff;
+            font-size: 19px;
+            margin: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #d9aa45;
+        }
+
+        .contact-item .number {
+            color: #d9aa45;
+            font-size: 13px;
+            margin-left: auto;
+        }
+
+        @media(max-width: 600px) {
+            .contact-item {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .contact-item h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            SAIRAM <span>ENTERPRISES</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="why-us.html">Why Us</a>
+            <a href="contact.html">Contact</a>
+            <a href="ai.html" class="ai-nav-btn">AI Assistant</a>
+        </div>
+    </nav>
+
+    <!-- CONTACT PAGE -->
+    <main class="contact-page">
+
+        <div class="section-label">GET IN TOUCH</div>
+
+        <h1>
+            Let's keep your<br>
+            <span>fleet moving.</span>
+        </h1>
+
+        <p class="contact-intro">
+            Need bus cleaning, repair or maintenance support?
+            Get in touch with Sairam Enterprises and tell us
+            what your fleet needs.
+        </p>
+
+        <div class="contact-layout">
+
+            <!-- CONTACT INFORMATION -->
+            <div class="contact-info">
+
+                <div class="contact-item">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <small>PHONE</small>
+                        <h3>
+                            <a href="tel:+919833788861">+91 9833788861</a>
+                        </h3>
+                    </div>
+                    <span class="number">01</span>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <small>EMAIL</small>
+                        <h3>
+                            <a href="mailto:rajeshdhavse509@gmail.com">
+                                rajeshdhavse509@gmail.com
+                            </a>
+                        </h3>
+                    </div>
+                    <span class="number">02</span>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">⌖</div>
+                    <div>
+                        <small>BUSINESS ADDRESS</small>
+                        <h3>
+                            SAIRAM ENTERPRISES AND SERVICES<br>
+                            Ground Floor, Room No-2, Chawl no-1,<br>
+                            Ganesh Krupa Chawl, Diva Manpada Road,<br>
+                            Behind Ganesh Mandir, Usarghar,<br>
+                            Kalyan, Thane, Maharashtra - 421201
+                        </h3>
+                    </div>
+                    <span class="number">03</span>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">▤</div>
+                    <div>
+                        <small>GST NUMBER</small>
+                        <h3>27BGDPD4587R1ZP</h3>
+                    </div>
+                    <span class="number">04</span>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">🚌</div>
+                    <div>
+                        <small>SERVICE</small>
+                        <h3>Bus Fleet Services</h3>
+                    </div>
+                    <span class="number">05</span>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">★</div>
+                    <div>
+                        <small>EXPERIENCE</small>
+                        <h3>2+ Years</h3>
+                    </div>
+                    <span class="number">06</span>
+                </div>
+
+            </div>
+
+            <!-- CONTACT FORM -->
+            <div class="contact-form-box">
+
+                <h2>Send an Enquiry</h2>
+
+                <form id="contactForm">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Enter your name"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="Enter phone number"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Service Required</label>
+                        <select id="service" required>
+                            <option value="">Select a service</option>
+                            <option value="Bus Cleaning">Bus Cleaning</option>
+                            <option value="Bus Repair">Bus Repair</option>
+                            <option value="Preventive Maintenance">
+                                Preventive Maintenance
+                            </option>
+                            <option value="Fleet Support">Fleet Support</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea
+                            id="message"
+                            rows="5"
+                            placeholder="Tell us about your requirement..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit">
+                        Send Enquiry →
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">SAIRAM ENTERPRISES</div>
+        <p>Bus Fleet Cleaning • Repair • Maintenance</p>
+        <span>© 2026 Sairam Enterprises. All rights reserved.</span>
+    </footer>
+
+    <!-- SUCCESS POPUP -->
+    <dialog id="successDialog" class="success-dialog">
+        <div class="success-content">
+            <div class="success-check">✓</div>
+            <h2>Success!</h2>
+            <p>Your request has been submitted successfully!</p>
+            <button type="button" id="successClose">OK</button>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
